@@ -15,6 +15,15 @@
         <div class="logo">
             <img src="..\image\logo.svg" alt="" class="logoimg">
         </div>
+
+        <div class="main_name">
+            База данных
+        </div>
+
+        <div class="change_table">
+            <div class="chng_name">Изменить страницу</div> <div class="strelka"></div>
+        </div>
+
     </header>
 
 <section class="main">
@@ -32,22 +41,42 @@
 </div>
 
 <div class="table" data-simplebar>
-    <table>
+    <table id="table">
         <tr>
-            <th>Lorem, ipsum.</th>
-            <th>Lorem, ipsum.</th>
-            <th>Lorem, ipsum.</th>
+            <th>Имена</th>
+            <th>Столбцов</th>
+            <th>Берутся</th>
+            <th>Из</th>
+            <th id="last">Базы Данных</th>
         </tr>
-                <tr>
-            <th>Lorem, ipsum.</th>
-            <th>Lorem, ipsum.</th>
-            <th>Lorem, ipsum.</th>
+
+        <tr>
+            <td id="first">Lorem, ipsum.</td>
+            <td id="first">Lorem, ipsum.</td>
+            <td id="first">Lorem, ipsum.</td>
+            <td id="first">Lorem, ipsum.</td>
+            <td id="firstlast">Lorem, ipsum.</td>
+        </tr>
+
+        <tr>
+            <td id="second">Lorem, ipsum.</td>
+            <td id="second">Lorem, ipsum.</td>
+            <td id="second">Lorem, ipsum.</td>
+            <td id="second">Lorem, ipsum.</td>
+            <td id="secondlast">Lorem, ipsum.</td>
         </tr>
     </table>
 </div>
 
 <div class="filters">
-
+    <div class="filter_name">Фильтры</div>
+    <div class="filter_labels">
+        <input type="radio" name="filter" id="option_1"><label for="option_1">Фильтры</label><br>
+        <input type="radio" name="filter" id="option_2"><label for="option_2">Согласно</label><br>
+        <input type="radio" name="filter" id="option_3"><label for="option_3">Наименованию</label><br>
+        <input type="radio" name="filter" id="option_4"><label for="option_4">Столбцам</label><br>
+        <input type="radio" name="filter" id="option_5"><label for="option_5">Таблицы</label>
+    </div>
 </div>
 
 </div>
@@ -60,5 +89,6 @@
 
 </div>
 <script src="../js/simplebar.js"></script>
+<script src="../js/db.js"></script>
 </body>
 </html>

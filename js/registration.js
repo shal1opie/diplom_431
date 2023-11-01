@@ -91,3 +91,12 @@ console.log(isAllValid);
     btn.removeAttribute('disabled');
   }
 }*/
+
+// ajax
+
+    $(document).ready(function () {
+			$("form").on('submit', function (event) {
+        event.preventDefault();
+        $.post("../validation/singup.php", $(this).serialize())
+			})
+		})

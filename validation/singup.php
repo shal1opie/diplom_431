@@ -3,6 +3,8 @@ session_start();
 
 require_once('../db_connect.php');
 
+print_r($_POST);
+
 $sql_select="SELECT * FROM `roles`";
 $result_select=$connect->query($sql_select);
 
@@ -15,7 +17,7 @@ if(isset($_POST["name"],$_POST["email"],$_POST["password_repeat"],$_POST["select
     $repeat_pass=$_POST["password_repeat"];
     $selected_role=$_POST["select"];
 
-    $sql_reg="INSERT INTO `users` (nick_name, role, email, password) VALUES ('$nickname', '$selected_role', '$email', '$pass')";
+    $sql_reg="INSERT INTO `users` (nick_name, role, role_raise, email, password) VALUES ('$nickname', '1', '$selected_role', '$email', '$pass')";
     if($connect->query($sql_reg) === TRUE) {
         echo "Успешная регистрация под логином " . $nickname . "!";
     } else {
@@ -68,12 +70,5 @@ if(!($pass == $repeat_pass)){
         $rresult = mysqli_query($connect, "INSERT INTO users (id, Role, Name, Surname, Otchestvo, Login, Password, Email) VALUES (NULL, '1', '$rname', '$rfamil', '$rotshet', '$rlogin', '$rpassword', '$remail')") or die ("Error : ".mysqli_error());
     }
 }
-
-if(!empty($_SESSION['validation'])){
-
-    redirect('/validation/registration.php');
-}
-
-
   
 ?>

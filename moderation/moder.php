@@ -12,7 +12,7 @@ require_once('../db_connect.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/moder.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>Авторизация</title>
   </head>
 <body>
@@ -52,8 +52,10 @@ require_once('../db_connect.php');
 
     <tr>
     <th>ID</th>
-    <th>Name</th>
-    <th>Option</th>                      
+    <th>Логин</th>
+    <th>Роль</th>
+    <th>Повышение роли</th>
+    <th>Действие</th>                      
     </tr>
 
 <?php 
@@ -63,34 +65,39 @@ require_once('../db_connect.php');
     $count = 1;
     while($row = mysqli_fetch_array($result) ){
     $id = $row['id'];
+    $role=$row["role"];
+    $role_raise=$row["role_raise"];
+    if(empty($role_raise)) {
     ?>
-    <tr>
+    <tr class="no_need">
+    <?php
+    } else {
+    ?>
+    <tr class="need">
+    <?php
+    }
+    //echo $role_raise;
+
+    ?>
     <td align='center'><?= $count; ?></td>
 								
     <td><?php echo $row['nick_name'] ?></td>
-                               
-    <td><span class='delete' data-id='<?= $id; ?>'><i class="fa fa-trash-o btn btn-danger" aria-hidden="true"></i></span></td>
+
+    <?php include 'moder_help.php'; //понизить роль заблокать .. одобрить отколонить
+    if ($i==0) {
+    ?>
+    
+    <td><div class='delete' data-id='<?= $id; ?>'><i class="fa fa-trash-o btn btn-danger" aria-hidden="true"></i></div></td>
     </tr>
 <?php
+    } else {
+    ?>
+    <td><div class='change' data-id='<?= $id; ?>'></div></td>
+    <?php    
+    }
     $count++;
     }
 ?>
-        <!-- <tr>
-            <th>Имена</th>
-            <th>Столбцов</th>
-            <th>Берутся</th>
-            <th>Из</th>
-            <th id="last">Базы Данных</th>
-        </tr>
-
-        <tr>
-            <td id="first">Lorem, ipsum.</td>
-            <td id="first">Lorem, ipsum.</td>
-            <td id="first">Lorem, ipsum.</td>
-            <td id="first">Lorem, ipsum.</td>
-            <td id="firstlast">Lorem, ipsum.</td>
-        </tr> -->
-
     </table>
 </div>
 
@@ -98,7 +105,8 @@ require_once('../db_connect.php');
     <div class="filter_name">Фильтры</div>
     <div class="filter_labels">
         <!-- <input type="radio" name="filter" id="option_1"><label for="option_1">Фильтры</label><br> -->
-
+    <input type="checkbox" id="chkTest" />
+    <label for="chkTest">Изменение роли</label>
     </div>
 </div>
 
@@ -144,5 +152,5 @@ require_once('../db_connect.php');
         });
     });
 </script>
-
+    <script src="../js/moder.js"></script>
 </html>
